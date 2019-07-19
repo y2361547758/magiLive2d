@@ -91,9 +91,16 @@ function _show(model) {
             // live2dSprite.playSound("星のカケラ.mp3", "sound/");
         // }
     });
-    if (follow) live2dSprite.on("mousemove", function(evt) {
-        const point = evt.data.global;
-        live2dSprite.setViewPoint(point.x, point.y);
-    });
+    if (follow) {
+        function f(evt) {
+            const point = evt.data.global;
+            live2dSprite.setViewPoint(point.x, point.y);
+        }
+        live2dSprite.on("mousemove", f);
+        live2dSprite.on("touchstart", f);
+        live2dSprite.on("touchmove", f);
+        // live2dSprite.on("pointermove", f);
+        // live2dSprite.on("pointerdown", f);
+    }
 }
 function show(path, model, callback) { getModel(path, model, _show, callback); }

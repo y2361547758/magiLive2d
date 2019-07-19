@@ -62,7 +62,6 @@ $(document).ready(function() {
             let lastChild = null;
             while (lastChild = stage.children.shift()) { lastChild.destroy(); }
             show("/magica/resource/image_native/live2d/" + this.value + "/", "model.json", function(model) {
-                console.log(model);
                 se.empty();
                 for (let c in model.expressions) {
                     exp = model.expressions[c];
