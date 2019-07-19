@@ -81,13 +81,16 @@ function _show(model) {
     live2dSprite.adjustScale(0, 0, 0.75);
     // live2dSprite.startRandomMotion("motion");
     // live2dSprite.setRandomExpression();
-    live2dSprite.on("click", (evt) => {
+    function t(evt) {
         const point = evt.data.global;
         if (live2dSprite.hitTest("head", point.x, point.y)) {
             live2dSprite.setRandomExpression();
         }
         live2dSprite.startRandomMotionOnce("motion");
-    });
+    }
+    live2dSprite.on("click", t);
+    live2dSprite.on("touchend", t);
+    live2dSprite.on("pointerup", t);
     if (follow) {
         function f(evt) {
             const point = evt.data.global;
@@ -95,9 +98,10 @@ function _show(model) {
         }
         live2dSprite.on("mousemove", f);
         live2dSprite.on("touchstart", f);
+        live2dSprite.on("touchend", f);
         live2dSprite.on("touchmove", f);
-        // live2dSprite.on("pointermove", f);
-        // live2dSprite.on("pointerdown", f);
+        live2dSprite.on("pointermove", f);
+        live2dSprite.on("pointerdown", f);
     }
 }
 function show(path, model, callback) { getModel(path, model, _show, callback); }
