@@ -1,0 +1,208 @@
+.background * {
+    position: absolute;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    text-align: center;
+}
+
+.web_00110 {
+    background-image: url('/magica/resource/image_native/bg/web/web_00110.png');
+    background-size: 2048px 2048px;
+}
+
+.sora_001 {
+    z-index: -9;
+    width: 1024px;
+    height: 758px;
+    background-position: -2404px -1776px;
+    background-size: 4096px 4096px;
+    pointer-events: unset;
+}
+
+.shizuku_400_01 {
+    width: 1024px;
+    height: 400px;
+    background-position: 0 0;
+    transform: scaleX(-1);
+    animation: ティアドロップス 80s infinite linear;
+}
+
+.shizuku_400_02 {
+    width: 1024px;
+    height: 397px;
+    background-position: 0 -402px;
+    animation: ティアドロップス 40s infinite linear;
+}
+
+.shizuku_400_01:before,
+.shizuku_400_01:after {
+    background-position: 0 0;
+}
+
+.shizuku_400_02:before,
+.shizuku_400_02:after {
+    background-position: 0 -402px;
+}
+
+.shizuku_400_01:before,
+.shizuku_400_01:after,
+.shizuku_400_02:before,
+.shizuku_400_02:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url('/magica/resource/image_native/bg/web/web_00110.png');
+}
+
+.shizuku_400_01:before,
+.shizuku_400_02:before {
+    top: -100%;
+}
+
+.shizuku_400_01:after,
+.shizuku_400_02:after {
+    bottom: -100%;
+}
+
+.shizuku_2 {
+    top: -400px;
+}
+
+.bill01 {
+    z-index: -5;
+    bottom: -100px;
+    width: 1084px;
+    height: 500px;
+    background-position: 0 -804px;
+    left: -100%;
+    right: -100%;
+    margin: auto;
+}
+
+.myp_sky_fune {
+    z-index: -6;
+    width: 166px;
+    height: 53px;
+    top: 25%;
+    background-position: -1026px 0;
+    animation: kirov 80s infinite linear;
+}
+
+.kumo_04 {
+    z-index: -5;
+    width: 438px;
+    height: 219px;
+    top: 10%;
+    background-position: 0 -1306px;
+    animation: fly 40s infinite linear;
+    animation-delay: 20s;
+    left: 110%;
+}
+
+.kumo_05 {
+    z-index: -7;
+    width: 494px;
+    height: 151px;
+    top: 40%;
+    background-position: -1026px -190px;
+    animation: fly 50s infinite linear;
+    animation-delay: -20s;
+}
+
+.kumo_07 {
+    z-index: -7;
+    width: 180px;
+    height: 133px;
+    top: 0;
+    background-position: -1026px -55px;
+    animation: fly 45s infinite linear;
+    animation-delay: 10s;
+    left: 110%;
+}
+
+.kumo_08 {
+    z-index: -7;
+    width: 406px;
+    height: 169px;
+    top: 20%;
+    background-position: -1026px -343px;
+    animation: fly 60s infinite linear;
+    animation-delay: -30s;
+}
+
+.sora {
+    z-index: -7;
+    width: 1301px;
+    height: 511px;
+    background-position: 0 -1527px;
+    animation: flow 60s infinite linear;
+}
+
+.sora:after,
+.sora:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url('/magica/resource/image_native/bg/web/web_00110.png');
+    background-position: 0 -1527px;
+    right: -100%;
+}
+
+.sora:before {
+    right: 100%;
+}
+
+.web_00111 {
+    background-image: url('/magica/resource/image_native/bg/web/web_00111.png');
+    background-size: 2048px 2048px;
+}
+
+.sora02 {
+    z-index: -9;
+    width: 724px;
+    height: 800px;
+    width: 100%;
+    height: 100%;
+    background-position: 95% 0;
+    background-size: 350% 150%;
+}
+
+.sora03 {
+    z-index: -8;
+    width: 1301px;
+    height: 511px;
+    width: 100%;
+    top: -60px;
+    background-position: 0 0;
+    background-size: 158% 150%;
+}
+
+@keyframes ティアドロップス{
+    0% { top: 0 }
+    100% { top: 400px }
+}
+
+@keyframes kirov{
+    0% { left: 110% }
+    100% { left: -150% }
+}
+
+@keyframes fly{
+    0% { left: 110% }
+    100% { left: -60% }
+}
+
+@keyframes flow{
+    0% { left: 1301px }
+    100% { left: 0 }
+}

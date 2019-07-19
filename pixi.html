@@ -5,9 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="referrer" content="never" />
         <meta name="robots" content="none" />
+        <link href="css/background.css" rel="stylesheet" />
         <title>Magireco Live2d Viewer BETA</title>
         <style>
             body { margin: 0; }
+            #top {
+                position: fixed;
+                right: 0; bottom: 0;
+                font-size: 5em;
+                z-index: 10;
+                border: none;
+                background: none;
+                line-height: .5em;
+                cursor: pointer;
+            }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="lib/live2d.min.js"></script>
@@ -48,6 +59,20 @@
             </div>
         </div>
         <div><canvas id="canvas" style="width: 50%;"></canvas></div>
+        <div><span id="top" onclick="window.scroll(0,0)">^</span></div>
+        <div class="background">
+            <div class="web_00110 shizuku_400_01"></div>
+            <div class="web_00110 shizuku_400_02"></div>
+            <div class="web_00110 myp_sky_fune"></div>
+            <div class="web_00110 kumo_04"></div>
+            <div class="web_00110 kumo_05"></div>
+            <div class="web_00110 kumo_07"></div>
+            <div class="web_00110 kumo_08"></div>
+            <div class="web_00110 bill01"></div>
+            <div class="web_00110 sora"></div>
+            <div class="web_00111 sora03"></div>
+            <div class="web_00111 sora02"></div>
+        </div>
         <script src="js/live2d.js"></script>
         <script src="js/page.js"></script>
     </body>
