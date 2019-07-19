@@ -86,10 +86,7 @@ function _show(model) {
         if (live2dSprite.hitTest("head", point.x, point.y)) {
             live2dSprite.setRandomExpression();
         }
-        // if (live2dSprite.hitTest("body", point.x, point.y)) {
-            live2dSprite.startRandomMotionOnce("motion");
-            // live2dSprite.playSound("星のカケラ.mp3", "sound/");
-        // }
+        live2dSprite.startRandomMotionOnce("motion");
     });
     if (follow) {
         function f(evt) {
