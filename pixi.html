@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<body>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="lib/live2d.min.js"></script>
+        <script src="lib/netUtils.js"></script>
+        <script src="lib/Live2DFramework.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.8/pixi.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.4/pixi.min.js"></script> -->
+        <script src="lib/pixi-live2d.js"></script>
+        <script src="lib/glMatrix-common.js"></script>
+        <script src="lib/glMatrix-mat4.js"></script>
+        <script src="lib/MatrixStack.js"></script>
+        <script src="lib/ModelSettingJson.js"></script>
+        <script src="lib/LAppModel.js"></script>
+        <script src="lib/index.js"></script>
+    </head>
+    <body>
+        <div>
+            <select id="char"></select>
+            <select id="custom"></select>
+            <button onclick="capture()">Capture</button>
+            <button onclick="triggerF()">trigger follow</button>
+            <input id="width" type="number" value="900" style="width:4em;">*<input id="height" type="number" value="1600" style="width:4em;">
+            <button onclick="resize()">resize</button>
+        </div>
+        <div id="function">
+            <div id="g1">
+                <select class="exp"></select>
+                <select class="motion"></select>
+                <select class="voice"></select>
+            </div>
+        </div>
+        <div><canvas id="canvas"></canvas></div>
+        <script src="js/live2d.js"></script>
+        <script src="js/page.js"></script>
+    </body>
+</body>
