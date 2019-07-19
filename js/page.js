@@ -2,6 +2,7 @@ let page = 0;
 let models = null;
 let voices = null;
 let sl = $('#custom');
+let audio;
 
 function triggerF() { follow = !follow; sl.change(); }
 function resize() { init(parseInt($('#width').val()), parseInt($('#height').val())); sl.change(); }
@@ -90,16 +91,17 @@ $(document).ready(function() {
         });
         se.change(function() { stage.children[0].model.setExpression(this.value) });
         sm.change(function() { stage.children[0].model.startMotion("motion", this.value) });
-        sv.change(function() { stage.children[0].model.playSound(this.value + ".mp3", '/magica/resource/sound_native/voice/') });
+        sv.change(function() { 
+            audio = stage.children[0].model.playSound(this.value + ".mp3", '/magica/resource/sound_native/voice/');
+        });
         $('#function > #g1 > button.exp').click(function(){ se.change() });
         $('#function > #g1 > button.motion').click(function(){ sm.change() });
         $('#function > #g1 > button.replay').click(function(){
-            let audio = stage.children[0].model.audioElement;
+            sv.change();
             audio.load();
             audio.play();
         });
         $('#function > #g1 > button.pause').click(function(){
-            let audio = stage.children[0].model.audioElement;
             if (audio.paused) audio.play();
             else audio.pause();
         });
