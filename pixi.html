@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <body>
     <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+		<meta name="referrer" content="never">
+        <meta name="robots" content="none">
+        <title>Magireco Live2d Viewer BETA</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="lib/live2d.min.js"></script>
         <script src="lib/netUtils.js"></script>
@@ -14,24 +24,31 @@
         <script src="lib/ModelSettingJson.js"></script>
         <script src="lib/LAppModel.js"></script>
         <script src="lib/index.js"></script>
-    </head>
-    <body>
         <div>
             <select id="char"></select>
             <select id="custom"></select>
             <button onclick="capture()">Capture</button>
-            <button onclick="triggerF()">trigger follow</button>
-            <input id="width" type="number" value="900" style="width:4em;">*<input id="height" type="number" value="1600" style="width:4em;">
-            <button onclick="resize()">resize</button>
+            <button onclick="triggerF()">(un)follow</button>
+            <input id="width" type="number" value="900" style="width:4em;" />*<input id="height" type="number" value="1600" style="width:4em;" />
+            <button onclick="resize()">reload/resize</button>
+            <label id="Lzoom">Zoom: 50%</label>
+            <input id="zoom" type="range" min="1" max="100" valu="50" />
         </div>
         <div id="function">
             <div id="g1">
+                Expression:&nbsp;
                 <select class="exp"></select>
+                <button class="exp">play</button>
+                Motion:&nbsp;
                 <select class="motion"></select>
+                <button class="motion">play</button>
+                Voice:&nbsp;
                 <select class="voice"></select>
+                <button class="replay">(re)play</button>
+                <button class="pause">pause</button>
             </div>
         </div>
-        <div><canvas id="canvas"></canvas></div>
+        <div><canvas id="canvas" style="width: 50%;"></canvas></div>
         <script src="js/live2d.js"></script>
         <script src="js/page.js"></script>
     </body>

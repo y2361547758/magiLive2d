@@ -37,11 +37,14 @@ function setpath(model, baseurl) {
     return model;
 }
 // AJAX get
-function getModel(path, model, callback) {
+function getModel(path, model, callback, callback2) {
     $.getJSON({
         url: path + model,
         dataType: "json",
-        success: function(data) {callback(setpath(data, path))},
+        success: function(data) {
+            callback(setpath(data, path));
+            callback2(data);
+        },
         error: function(xhr) {alert(xhr.responseJSON)}
     });
 }
@@ -93,4 +96,4 @@ function _show(model) {
         live2dSprite.setViewPoint(point.x, point.y);
     });
 }
-function show(path, model) { getModel(path, model, _show); }
+function show(path, model, callback) { getModel(path, model, _show, callback); }
