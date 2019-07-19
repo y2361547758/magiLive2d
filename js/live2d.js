@@ -91,6 +91,17 @@ function _show(model) {
     live2dSprite.on("click", t);
     live2dSprite.on("touchend", t);
     live2dSprite.on("pointerup", t);
+    let o = null;
+    live2dSprite.on("touchstart", function(evt) {
+        o = {x: evt.data.global.x, y: evt.data.global.y};
+    });
+    live2dSprite.on("touchmove", function(evt) {
+        if (o) {
+            let t = {x: evt.data.global.x, y:evt.data.global.y};
+            window.scroll(window.scrollX + o.x - t.x, window.scrollY + o.y - t.y);
+        }
+    });
+    live2dSprite.on("touchend", function() { o = null; });
     if (follow) {
         function f(evt) {
             const point = evt.data.global;
