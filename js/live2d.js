@@ -49,21 +49,21 @@ function getModel(path, model, callback, callback2) {
     });
 }
 // Pixi option
-const option = {
+let option = {
+    width: 900,
+    height: 1600,
     transparent: true,
     preserveDrawingBuffer: true,    // to capture
     view: document.getElementById("canvas")
 }
-if (!PIXI.Renderer) PIXI.Renderer = PIXI.WebGLRenderer
-let renderer = null;
+let app = null;
 let stage = new PIXI.Container();
+
 function init(x, y) {
-    renderer = new PIXI.Renderer(x, y, option);
-    function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(stage);
-    }
-    animate();
+    option.width = x;
+    option.height = y;
+    app = new PIXI.Application(option);
+    app.stage.addChild(stage);
     // const sprite = new PIXI.Sprite.fromImage("./7_room2_a.jpg");
     // stage.addChild(sprite);
 }
@@ -89,8 +89,8 @@ function _show(model) {
         live2dSprite.startRandomMotionOnce("motion");
     }
     live2dSprite.on("click", t);
-    live2dSprite.on("touchend", t);
-    live2dSprite.on("pointerup", t);
+    live2dSprite.on("tap", t);
+    live2dSprite.on("pointertap", t);
     let o = null;
     live2dSprite.on("touchstart", function(evt) {
         o = {x: evt.data.global.x, y: evt.data.global.y};
@@ -109,7 +109,7 @@ function _show(model) {
         }
         live2dSprite.on("mousemove", f);
         live2dSprite.on("touchstart", f);
-        live2dSprite.on("touchend", f);
+        live2dSprite.on("tap", f);
         live2dSprite.on("touchmove", f);
         live2dSprite.on("pointermove", f);
         live2dSprite.on("pointerdown", f);

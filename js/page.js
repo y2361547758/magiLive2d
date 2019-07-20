@@ -5,8 +5,10 @@ let sl = $("#custom");
 let audio;
 
 function triggerF() { follow = !follow; sl.change(); }
-function resize() { init(parseInt($("#width").val()), parseInt($("#height").val())); sl.change(); }
-
+function resize() {
+    init(parseInt($("#width").val()), parseInt($("#height").val())); sl.change();
+    app.view.style.width = (parseFloat($("#zoom").val()) * parseFloat($("#width").val()) / 100 + "px");
+}
 const downloadBlob = function(index) {
     return function(blob) {
         const a = document.createElement("a");
@@ -16,7 +18,7 @@ const downloadBlob = function(index) {
         window.URL.revokeObjectURL(a.href);
     }
 }
-function save(index) { renderer.view.toBlob(downloadBlob(index)); }
+function save(index) { app.view.toBlob(downloadBlob(index)); }
 function capture() { save(page++); }
 
 function get(url, callback) {
@@ -54,7 +56,7 @@ $(document).ready(function() {
         })
         $("#zoom").change(function() {
             $("#Lzoom").text("Zoom: " + this.value + "%");
-            $(renderer.view).css("width", this.value * $("#width").val() / 100 + "px");
+            app.view.style.width = (parseFloat(this.value) * parseFloat($("#width").val()) / 100 + "px");
         });
         let se = $("#function > #g1 > select.exp");
         let sm = $("#function > #g1 > select.motion");
