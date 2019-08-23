@@ -17,13 +17,15 @@ for m in dl:
     # charaName = params["charaName"]
     if not os.path.isdir(MODEL_PATH + m): continue
     ch = int(m[0:-2])
-    with os.popen('grep charaName ' + MODEL_PATH + m + '/params.json | cut -d \'"\' -f 4') as f:
-        charaName = f.read().strip().rstrip('圧縮').strip('_')
-    custom = re.search(r'\((.*)\)(.*)', charaName)
-    if not custom: custom = re.search(r'（(.*)）(.*)', charaName)
-    custom = (custom.group(1) + custom.group(2)) if custom else charaName
-    with os.popen('grep charaName ' + MODEL_PATH + m[0:-2] + '00/params.json | cut -d \'"\' -f 4') as f:
-        name = f.read().rstrip().rstrip('圧縮').strip('_').split('(')[0].split('（')[0]
+    with os.popen('grep charaName ' + MODEL_PATH + m + '/params.json | cut -d \'"\' -f 4 | sed \'s/　/ /g\'') as f:
+        charaName = f.read().strip().replace('(圧縮)', '').replace('_圧縮', '').strip('_圧縮')
+        name = charaName.split('_')[0].split('(')[0].split('（')[0]
+    custom = re.search(r'[(（](.*?)[)）](.*)', charaName)
+    if not name in chars:
+        with os.popen('grep charaName ' + MODEL_PATH + m[0:-2] + '00/params.json | cut -d \'"\' -f 4 | sed \'s/　/ /g\'') as f:
+            name = f.read().rstrip().rstrip('圧縮').split('_')[0].split('(')[0].split('（')[0]
+    custom = (custom.group(1) + '_' + custom.group(2)) if custom else charaName.lstrip(name)
+    custom = custom.strip('_') if custom else charaName
     if name in chars:
         if chars[name] > ch:
             models[ch] = models.pop(chars[name])
