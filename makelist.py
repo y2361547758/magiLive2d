@@ -21,20 +21,21 @@ for m in dl:
         charaName = f.read().strip().replace('(圧縮)', '').replace('_圧縮', '').strip('_圧縮')
         name = charaName.split('_')[0].split('(')[0].split('（')[0]
     custom = re.search(r'[(（](.*?)[)）](.*)', charaName)
-    if not name in chars:
+    if not name in chars and os.path.isdir(MODEL_PATH + m[0:-2] + '00'):
         with os.popen('grep charaName ' + MODEL_PATH + m[0:-2] + '00/params.json | cut -d \'"\' -f 4 | sed \'s/　/ /g\'') as f:
             name = f.read().rstrip().rstrip('圧縮').split('_')[0].split('(')[0].split('（')[0]
     custom = (custom.group(1) + '_' + custom.group(2)) if custom else charaName.lstrip(name)
     custom = custom.strip('_') if custom else charaName
-    if name in chars:
-        if chars[name] > ch:
-            models[ch] = models.pop(chars[name])
-            chars[name] = ch
+    if not ch in models:
+        if name in chars:
+            if chars[name] > ch:
+                models[ch] = models.pop(chars[name])
+                chars[name] = ch
+            else:
+                if chars[name] < ch: ch = chars[name]
         else:
-            if chars[name] < ch: ch = chars[name]
-    else:
-        chars[name] = ch
-        models[ch] = {'name': name, 'models': {}}
+            chars[name] = ch
+            models[ch] = {'name': name, 'models': {}}
     models[ch]['models'][int(m)] = custom
     # models[ch]['models'][int(m[-2:])] = {'name': custom, 'id': m}
 
