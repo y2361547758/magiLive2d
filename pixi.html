@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="referrer" content="never" />
         <meta name="robots" content="none" />
+        <!--link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" /-->
         <link href="css/background.css" rel="stylesheet" />
-        <title>Magireco Live2d Viewer BETA</title>
+        <title>Magireco Live2d Viewer 4.0 Beta</title>
         <style>
             body { margin: 0; }
             #top {
@@ -20,18 +21,11 @@
                 cursor: pointer;
             }
         </style>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="lib/live2d.min.js"></script>
-        <script src="lib/netUtils.js"></script>
-        <script src="lib/Live2DFramework.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.8/pixi.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.0/pixi.js"></script> -->
-        <script src="lib/glMatrix-common.js"></script>
-        <script src="lib/glMatrix-mat4.js"></script>
-        <script src="lib/MatrixStack.js"></script>
-        <script src="lib/ModelSettingJson.js"></script>
-        <script src="lib/LAppModel.js"></script>
-        <script src="lib/pixi-live2d.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="lib/live2dcubismcore.min.js"></script>
+        <!-- <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js" crossorigin="anonymous"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.1.1/browser/pixi.min.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/pixi-live2d-display@0.3.1/dist/cubism4.min.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div>
@@ -39,10 +33,11 @@
             <select id="custom"></select>
             <button onclick="capture()">Capture</button>
             <button onclick="triggerF()">(un)follow</button>
-            <input id="width" type="number" value="900" style="width:4em;" />*<input id="height" type="number" value="1600" style="width:4em;" />
+            <input id="width" type="number" value="1280" style="width:4em;" />*<input id="height" type="number" value="1600" style="width:4em;" />
             <button onclick="resize()">reload/resize</button>
             <label id="Lzoom">Zoom: 50%</label>
             <input id="zoom" type="range" min="1" max="100" valu="50" />
+            <button id="background">Background</button>
         </div>
         <div id="function">
             <div id="g1">
@@ -56,11 +51,12 @@
                 <select class="voice"></select>
                 <button class="replay">(re)play</button>
                 <button class="pause">pause</button>
+		<a href="https://github.com/y2361547758/magiLive2d">@GitHub</a>
             </div>
         </div>
         <div><canvas id="canvas" style="width: 450px;"></canvas></div>
         <div><span id="top" onclick="window.scroll(0,0)">^</span></div>
-        <div class="background">
+        <div class="background" style="display: none">
             <div class="web_00110 shizuku_400_01"></div>
             <div class="web_00110 shizuku_400_02"></div>
             <div class="web_00110 myp_sky_fune"></div>

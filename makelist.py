@@ -8,7 +8,7 @@ import json
 #     with codecs.open(item, 'r', 'utf-8-sig') as f:
 #         return json.load(f)
 
-MODEL_PATH = 'resource/image_native/live2d/'
+MODEL_PATH = 'resource/image_native/live2d_v4/'
 dl = os.listdir(MODEL_PATH)
 models = {}
 chars = {}
@@ -18,14 +18,14 @@ for m in dl:
     if not os.path.isdir(MODEL_PATH + m): continue
     ch = int(m[0:-2])
     with os.popen('grep charaName ' + MODEL_PATH + m + '/params.json | cut -d \'"\' -f 4 | sed \'s/　/ /g\'') as f:
-        charaName = f.read().strip().replace('(圧縮)', '').replace('_圧縮', '').strip('_圧縮')
+        charaName = f.read().strip().replace('(圧縮)', '').replace('（圧縮）', '').replace('_圧縮', '').strip('_圧縮').replace(' ', '')
         name = charaName.split('_')[0].split('(')[0].split('（')[0]
     custom = re.search(r'[(（](.*?)[)）](.*)', charaName)
     if not name in chars and os.path.isdir(MODEL_PATH + m[0:-2] + '00'):
         with os.popen('grep charaName ' + MODEL_PATH + m[0:-2] + '00/params.json | cut -d \'"\' -f 4 | sed \'s/　/ /g\'') as f:
-            name = f.read().rstrip().rstrip('圧縮').split('_')[0].split('(')[0].split('（')[0]
+            name = f.read().rstrip().rstrip('圧縮').split('_')[0].split('(')[0].split('（')[0].replace(' ', '')
     custom = (custom.group(1) + '_' + custom.group(2)) if custom else charaName.lstrip(name)
-    custom = custom.strip('_') if custom else charaName
+    custom = custom.strip('_').replace('__', '_').replace('._', '.') if custom else charaName
     if not ch in models:
         if name in chars:
             if chars[name] > ch:
