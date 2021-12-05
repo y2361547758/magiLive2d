@@ -46,7 +46,10 @@ async function _show(model) {
         debugMouseLog: false,
         randomMotion: false,
         defaultMotionGroup: "Motion",
-        autoInteract: follow
+        autoInteract: follow,
+        expressionFadingDuration: 0,
+        motionFadingDuration: 0,
+        idleMotionFadingDuration: 0
     });
     app.stage.addChild(live2dSprite);
     live2dSprite.scale.set(0.5, 0.5);
