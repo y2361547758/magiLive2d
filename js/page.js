@@ -116,8 +116,15 @@ $(document).ready(function() {
             for (let c in list) { sv.append($("<option></option>").text(c).val(list[c])) }
             sv.val("");
         });
-        se.change(function() { app.stage.children[0].internalModel.motionManager.expressionManager.setExpression(this.value) });
-        sm.change(function() { app.stage.children[0].internalModel.motionManager.startMotion("Motion", this.value) });
+        se.change(function() {
+            app.stage.children[0].internalModel.motionManager.stopAllMotions();
+            app.stage.children[0].internalModel.motionManager.startMotion("Motion", sm.val() ?? 0);
+            app.stage.children[0].internalModel.motionManager.expressionManager.setExpression(this.value)
+        });
+        sm.change(function() {
+            app.stage.children[0].internalModel.motionManager.stopAllMotions();
+            app.stage.children[0].internalModel.motionManager.startMotion("Motion", this.value)
+        });
         sv.change(function() { 
             //audio = app.stage.children[0].model.playSound(this.value + ".mp3", "/magica/resource/sound_native/voice/");
         });
