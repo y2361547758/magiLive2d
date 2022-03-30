@@ -11,10 +11,20 @@ function setpath(model, baseurl) {
     ]
     return model;
 }
+async function check_texture(base, data) {
+    data.FileReferences.Textures = (await Promise.all(
+        data.FileReferences.Textures.map(
+            async i => await fetch(base + i)
+                .then(r => r.ok ? i : undefined)
+        )
+    )).filter(i => i)
+    return data
+}
 // AJAX get
 function getModel(path, model, callback, callback2) {
     return fetch(path + model)
     .then(r => r.json(), alert)
+    .then(data => check_texture(path, data), alert)
     .then(data => {
         callback(setpath(data, path + model))
         callback2(data.FileReferences)
