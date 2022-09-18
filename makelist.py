@@ -10,6 +10,7 @@ import json
 
 MODEL_PATH = 'resource/image_native/live2d_v4/'
 dl = os.listdir(MODEL_PATH)
+dl.sort()
 models = {}
 chars = {}
 for m in dl:
