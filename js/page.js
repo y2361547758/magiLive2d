@@ -143,4 +143,7 @@ $(document).ready(function() {
     $('#background').click(function(){
         $('.background').toggle();
     });
+    $(document).keydown(function({ code }) {
+      code === 'CapsLock' && capture();
+    });
 });
