@@ -60,7 +60,7 @@ $(document).ready(function() {
                 se.empty();
                 for (let c in model.Expressions) {
                     exp = model.Expressions[c];
-                    se.append($("<option></option>").text(c).val(exp.Name));
+                    se.append($("<option></option>").text(exp.Name.replace(/\.json$/, '')).val(exp.Name));
                 }
                 se.val("");
                 
